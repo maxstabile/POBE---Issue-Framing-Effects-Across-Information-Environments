@@ -4,7 +4,7 @@
 # # -----------------------------------------------------------------------
 
 
-jntv<-read.csv("data/tv/SSR_JN_content_analysis.csv", header=T)
+jntv<-read.csv("data/press/SSR_JN_content_analysis.csv", header=T)
 
 time_to_seconds <- function(time_string) {
   # Split the time_string into minutes and seconds parts
@@ -58,3 +58,4 @@ times5 <- c(
 ); times5<-sum(sapply(times5, time_to_seconds))/60/60
 
 print(times1+times2+times3+times4+times5)
+

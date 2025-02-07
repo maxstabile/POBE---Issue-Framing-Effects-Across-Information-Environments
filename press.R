@@ -3,8 +3,6 @@
 #  Issue Framing Effects Across Information Environments
 # # --------------------------------------------------------------------------------------
 #  Out Files: Figure 1 and Figure 2
-#  Author Robert Vidigal & Max Stabile.
-#  Machine: Mac Book PRO (Silicon M1 Chip)
 # # --------------------------------------------------------------------------------------
 
 
@@ -93,12 +91,12 @@ news_by_date$waveDescription <- case_when(
   news_by_date$waveDescription == 2 ~ "Inauguration \n (Survey 2)", 
   news_by_date$waveDescription == 3 ~ "Bill introduction \n (Survey 3)",
   news_by_date$waveDescription == 4 ~ "Bill approval \n (Survey 4)",
-  news_by_date$waveDescription == 5 ~ "March 2022 \n (Survey 5)", 
+  news_by_date$waveDescription == 5 ~ "Post-reform cycle \n (Survey 5)", 
   TRUE ~ as.character(news_by_date$waveDescription)
 )
 
 news_by_date$waveDescription <-factor(news_by_date$waveDescription, levels=c("Post-election \n (Survey 1)", "Inauguration \n (Survey 2)", 
-                                     "Bill introduction \n (Survey 3)", "Bill approval \n (Survey 4)", "March 2022 \n (Survey 5)"), ordered = T)
+                                     "Bill introduction \n (Survey 3)", "Bill approval \n (Survey 4)", "Post-reform cycle \n (Survey 5)"), ordered = T)
 
 table(news_by_date$waveDescription)
 
@@ -133,7 +131,7 @@ news_by_date %>%
   
   theme_light() +  # Mantém o quadrado ao redor dos gráficos
   theme(
-    axis.text.x = element_text(angle = 90, size = 10, hjust = 0.2),  # Move os rótulos levemente para dentro
+    axis.text.x = element_text(angle = 90, size = 14, hjust = 0.2),  # Move os rótulos levemente para dentro
     axis.text.y = element_text(size = 8),  # Mantém eixo Y legível
     axis.ticks.x = element_line(),  # Mantém ticks do eixo X
     axis.ticks.y = element_line(),  # Mantém ticks do eixo Y
@@ -374,12 +372,28 @@ waves_df %>%
 
 # -----CRIANDO O GRÁFICO ----
 
+
+
+
+waves_df$wave <- case_when(
+  waves_df$wave == "Wave_1"  ~ "Post-election \n (Survey 1)",
+  waves_df$wave == "Wave_2" ~ "Inauguration \n (Survey 2)", 
+  waves_df$wave == "Wave_3" ~ "Bill introduction \n (Survey 3)",
+  waves_df$wave == "Wave_4" ~ "Bill approval \n (Survey 4)",
+  waves_df$wave == "Wave_5" ~ "Post-reform cycle \n (Survey 5)", 
+  TRUE ~ as.character(waves_df$wave)
+)
+
+waves_df$wave <-factor(waves_df$wave, levels=c("Post-election \n (Survey 1)", "Inauguration \n (Survey 2)", 
+                                                                             "Bill introduction \n (Survey 3)", "Bill approval \n (Survey 4)", "Post-reform cycle \n (Survey 5)"), ordered = T)
+
+
 #dev.off()  
 png(filename="images/fig2.png", width = 1200, height = 300)
 
 waves_df |>
   mutate(
-    wave = str_replace(wave, "Wave_", "Survey "),  # Ajusta nome dos surveys
+ #   wave = str_replace(wave, "Wave_", "Survey "),  # Ajusta nome dos surveys
     cluster_category = fct_relevel(cluster_category, 
                                    "Goverment Deliberation", 
                                    "SSR Rhetoric", 

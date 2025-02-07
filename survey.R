@@ -209,11 +209,11 @@ fig1tab <- data.frame(
   ),
   "tratamento"=c(rep(c("control", "increase investment frame", 
                        "reduce expenditure frame"), 5)),
-  "ONDA"=c(rep("Post-election \n (Survey 1) \n (telephone)",3), 
-           rep("Inauguration \n (Survey 2) \n (online)",3 ), 
-           rep("Bill introduction \n (Survey 3) \n (online)",3 ), 
-           rep("Bill approval \n (Survey 4) \n (telephone)",3),
-           rep("March 2022 \n (Survey 5) \n (online)",3)) # rep("Pooled \n Surveys", 3)) #, 
+  "ONDA"=c(rep("Post-election \n (Survey 1)",3), 
+           rep("Inauguration \n (Survey 2)",3 ), 
+           rep("Bill introduction \n (Survey 3)",3 ), 
+           rep("Bill approval \n (Survey 4)",3),
+           rep("Post-reform cycle \n (Survey 5)",3)) # rep("Pooled \n Surveys", 3)) #, 
 )
 
 
@@ -221,11 +221,11 @@ fig1tab <- fig1tab %>%
   mutate(
     tratamento = factor(tratamento, levels = c("control", "increase investment frame", "reduce expenditure frame")),
     ONDA = factor(ONDA, levels = c(
-      "Post-election \n (Survey 1) \n (telephone)", 
-      "Inauguration \n (Survey 2) \n (online)", 
-      "Bill introduction \n (Survey 3) \n (online)", 
-      "Bill approval \n (Survey 4) \n (telephone)",
-      "March 2022 \n (Survey 5) \n (online)"
+      "Post-election \n (Survey 1)", 
+      "Inauguration \n (Survey 2)", 
+      "Bill introduction \n (Survey 3)", 
+      "Bill approval \n (Survey 4)",
+      "Post-reform cycle \n (Survey 5)"
     ))
   )
 
